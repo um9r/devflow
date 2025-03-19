@@ -4,12 +4,12 @@ export const SignInSchema = z.object({
   email: z
     .string()
     .min(1, { message: "Email is required" })
-    .email({ message: "please provide a valid email address" }),
+    .email({ message: "Please provide a valid email address." }),
 
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters" })
-    .max(100, { message: "Password cannot exceed 100 characters" }),
+    .min(6, { message: "Password must be at least 6 characters long. " })
+    .max(100, { message: "Password cannot exceed 100 characters." }),
 });
 
 export const SignUpSchema = z.object({
@@ -124,4 +124,12 @@ export const SignInWithOAuthSchema = z.object({
       .email({ message: "Please provide a valid email address." }),
     image: z.string().url("Invalid image URL").optional(),
   }),
+});
+
+export const EditQuestionSchema = AskQuestionSchema.extend({
+  questionId: z.string().min(1, { message: "Question ID is required." }),
+});
+
+export const GetQuestionSchema = z.object({
+  questionId: z.string().min(1, { message: "Question ID is required." }),
 });
