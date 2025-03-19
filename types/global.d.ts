@@ -18,6 +18,7 @@ interface Question {
   upvotes: number;
   answers: number;
   views: number;
+  createdAt: Date;
 }
 
 type ActionResponse<T = null> = {
@@ -35,3 +36,8 @@ type ErrorResponse = ActionResponse<undefined> & { success: false };
 
 type APIErrorResponse = NextResponse<ErrorResponse>;
 type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
+
+interface RouteParams {
+  params: Promise<Record<string, string>>;
+  searchParams: Promise<Record<string, string>>;
+}
