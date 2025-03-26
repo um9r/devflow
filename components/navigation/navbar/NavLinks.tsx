@@ -25,14 +25,16 @@ const NavLinks = ({
           (pathname.includes(item.route) && item.route.length > 1) ||
           pathname === item.route;
 
+        // Move profile route modification inside the map function
+        let href = item.route;
         if (item.route === "/profile") {
-          if (userId) item.route = `${item.route}/${userId}`;
-          else return null;
+          if (!userId) return null;
+          href = `${item.route}/${userId}`;
         }
 
         const LinkComponent = (
           <Link
-            href={item.route}
+            href={href}
             key={item.label}
             className={cn(
               isActive
